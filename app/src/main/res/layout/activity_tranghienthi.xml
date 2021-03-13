@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".tranghienthi"
+    android:id="@+id/rl">
+
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/bc"
+        android:layout_width="393dp"
+        android:layout_height="299dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="133dp" />
+
+    <TextView
+        android:id="@+id/txtnd"
+        android:layout_width="141dp"
+        android:layout_height="133dp"
+        android:layout_above="@+id/bc"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="22dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/txtda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bc"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginBottom="45dp"
+        android:layout_toStartOf="@+id/btnmdkk"
+        android:layout_toEndOf="@+id/txtnd"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/txtda"
+        android:layout_marginEnd="17dp"
+        android:layout_marginBottom="38dp"
+        android:layout_toStartOf="@+id/btnmdbui"
+        android:text="TextView" />
+
+    <Button
+        android:id="@+id/btnmdkk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bc"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="23dp"
+        android:text="Mật độ không khí" />
+
+    <Button
+        android:id="@+id/btnmdbui"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnmdkk"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="59dp"
+        android:layout_marginBottom="22dp"
+        android:text="Mật độ bụi" />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="127dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="-7dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="-6dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="104dp"
+            android:orientation="vertical">
+            <CheckBox
+                android:id="@+id/c1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <CheckBox
+                android:id="@+id/c2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <CheckBox
+                android:id="@+id/c3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <CheckBox
+                android:id="@+id/c4"
+                android:layout_width="match_parent"
+                android:layout_height="17dp" />
+            <CheckBox
+                android:id="@+id/c5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <CheckBox
+                android:id="@+id/c6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <CheckBox
+                android:id="@+id/c7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageButton
+        android:id="@+id/imgluu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnmdbui"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="7dp"
+        android:layout_marginBottom="0dp"
+        android:src="@drawable/savve" />
+
+</RelativeLayout>

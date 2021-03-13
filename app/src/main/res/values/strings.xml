@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">NCKH</string>
+    <string name="use">Tài khoản</string>
+    <string name="pass">Mật khẩu</string>
+    <string name="dangnhap">Đăng nhập</string>
+    <string name="fb">Facebook</string>
+    <string name="GG">Google</string>
+    <string name="xnu">Xin hãy nhập tên tài khoản</string>
+    <string name="xnp">Xin hãy nhập mật khẩu</string>
+</resources>
