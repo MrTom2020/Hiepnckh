@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <TextView
@@ -8,8 +10,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtthoigian"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="41dp"
-        android:layout_marginEnd="52dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="23dp"
         android:text="TextView" />
 
     <TextView
@@ -18,19 +20,19 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="27dp"
-        android:layout_marginEnd="51dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="21dp"
         android:text="TextView" />
 
     <TextView
         android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="38dp"
+        android:layout_height="15dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="29dp"
-        android:text="Nhiệt độ" />
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="17dp"
+        android:background="@drawable/thermometer" />
 
     <TextView
         android:id="@+id/textView15"
@@ -38,9 +40,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView14"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="33dp"
-        android:text="Độ ẩm" />
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="11dp"
+        android:background="@drawable/droplets" />
 
     <TextView
         android:id="@+id/textView16"
@@ -48,39 +50,39 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView15"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="98dp"
-        android:text="Mật độ không khí" />
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="25dp"
+        android:text="AQI" />
 
     <TextView
         android:id="@+id/textView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="27dp"
-        android:layout_marginEnd="25dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="23dp"
         android:layout_toStartOf="@+id/txtthoigian"
-        android:text="Ngày lưu trữ" />
+        android:text="Date" />
 
     <TextView
         android:id="@+id/textView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView17"
-        android:layout_marginTop="39dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="31dp"
         android:layout_toStartOf="@+id/txttgioluu"
-        android:text="Giờ lưu trữ" />
+        android:text="Hour" />
 
     <TextView
         android:id="@+id/textView20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView18"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="21dp"
         android:layout_marginEnd="30dp"
         android:layout_toStartOf="@+id/txtmdbui"
-        android:text="Mật độ bụi" />
+        android:text="Pm 2.5:" />
 
     <TextView
         android:id="@+id/txtmdbui"
@@ -88,8 +90,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/txttgioluu"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="39dp"
-        android:layout_marginEnd="53dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="23dp"
         android:text="TextView" />
 
     <TextView
@@ -97,8 +99,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="11dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="16dp"
         android:layout_toEndOf="@+id/textView14"
         android:text="TextView" />
 
@@ -107,8 +109,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtnhietdo"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="14dp"
         android:layout_toEndOf="@+id/textView15"
         android:text="TextView" />
 
@@ -117,8 +119,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtdam"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="92dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="24dp"
         android:layout_toEndOf="@+id/textView16"
         android:text="TextView" />
 
@@ -126,13 +128,35 @@
         android:id="@+id/textView22"
         android:layout_width="375dp"
         android:layout_height="9dp"
-        android:layout_below="@+id/txtclkk"
+        android:layout_below="@+id/imageView"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="11dp"
-        android:layout_marginTop="39dp"
-        android:layout_marginEnd="25dp"
-        android:text="TextView"
-        android:background="@android:color/black"/>
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="71dp"
+        android:layout_marginEnd="12dp"
+        android:background="@android:color/black"
+        android:text="TextView" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="182dp"
+        android:layout_height="156dp"
+        android:layout_below="@+id/txtclkk"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="9dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/txttt"
+        android:layout_width="175dp"
+        android:layout_height="99dp"
+        android:layout_below="@+id/textView20"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="51dp"
+        android:layout_marginEnd="22dp"
+        android:layout_toEndOf="@+id/imageView"
+        android:text="TextView" />
 
 </RelativeLayout>

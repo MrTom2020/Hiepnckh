@@ -1,11 +1,14 @@
 package com.example.nckh;
 
 import android.app.Application;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.os.Build;
 
-public class WifiApp extends Application
+public class    WifiApp extends Application
 {
     static WifiApp wifiApp;
-
+    public static  final  String cb = "Thongbao";
     @Override
     public void onCreate()
     {
@@ -15,5 +18,18 @@ public class WifiApp extends Application
     public static synchronized WifiApp getInstance()
     {
         return wifiApp;
+    }
+    public void createNotificationChannels()
+    {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+        {
+            NotificationChannel notificationChannel = new NotificationChannel(
+                    cb,"Thongbao",
+                    NotificationManager.IMPORTANCE_HIGH
+            );
+            notificationChannel.setDescription("Thongbao");
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(notificationChannel);
+        }
     }
 }

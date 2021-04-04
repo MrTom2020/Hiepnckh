@@ -24,7 +24,7 @@
         android:layout_marginStart="31dp"
         android:layout_marginTop="119dp"
         android:layout_marginEnd="26dp"
-        android:text="ĐĂNG KÝ TÀI KHOẢN"
+        android:text="REGISTER AN ACCOUNT"
         android:textSize="30dp"
         android:textAlignment="center"/>
 
@@ -36,7 +36,7 @@
         android:layout_marginTop="49dp"
         android:layout_marginEnd="53dp"
         android:layout_toStartOf="@+id/edtten"
-        android:text="Tên Đăng Nhập" />
+        android:text="User name" />
 
     <EditText
         android:id="@+id/edtten"
@@ -48,7 +48,7 @@
         android:layout_marginEnd="34dp"
         android:ems="10"
         android:inputType="textEmailSubject"
-        android:hint="Email Đăng Nhập...."/>
+        android:hint="Email login...."/>
 
     <TextView
         android:id="@+id/textView4"
@@ -58,7 +58,7 @@
         android:layout_marginTop="74dp"
         android:layout_marginEnd="56dp"
         android:layout_toStartOf="@+id/edtmk"
-        android:text="Mật Khẩu" />
+        android:text="Password" />
 
     <EditText
         android:id="@+id/edtmk"
@@ -69,7 +69,7 @@
         android:layout_marginTop="46dp"
         android:layout_marginEnd="34dp"
         android:ems="10"
-        android:hint="Mật Khẩu Đăng Nhập"
+        android:hint="Login Password"
         android:inputType="textPassword" />
 
     <TextView
@@ -80,7 +80,7 @@
         android:layout_marginTop="89dp"
         android:layout_marginEnd="46dp"
         android:layout_toStartOf="@+id/edtdiachi"
-        android:text="Địa Chỉ" />
+        android:text="Address" />
 
     <EditText
         android:id="@+id/edtdiachi"
@@ -91,7 +91,7 @@
         android:layout_marginTop="64dp"
         android:layout_marginEnd="34dp"
         android:ems="10"
-        android:hint="Thông Tin Địa Chỉ"
+        android:hint="Address Information"
         android:inputType="textPersonName" />
 
     <TextView
@@ -105,7 +105,7 @@
         android:layout_marginTop="83dp"
         android:layout_marginEnd="53dp"
         android:layout_toStartOf="@+id/editTextDate"
-        android:text="Ngày Sinh" />
+        android:text="Date of birth" />
 
     <EditText
         android:id="@+id/editTextDate"
@@ -116,7 +116,7 @@
         android:layout_marginTop="57dp"
         android:layout_marginEnd="34dp"
         android:ems="10"
-        android:hint="Nhập Ngày Sinh"
+        android:hint="Enter your Date of Birth"
         android:inputType="date" />
 
     <Button
@@ -127,7 +127,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="30dp"
         android:layout_marginTop="64dp"
-        android:text="Đồng Ý"
+        android:text="Agree"
         android:background="@drawable/tuybiennut" />
 
     <Button
@@ -138,7 +138,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="74dp"
-        android:text="Thoát"
+        android:text="Exit"
         android:background="@drawable/tuybiennut"/>
 </RelativeLayout>
 </ScrollView>

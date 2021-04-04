@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:id="@+id/mottuan"
+    android:title="1 Tuần"/>
+    <item android:id="@+id/motthang"
+        android:title="1 tháng"/>
+    <item android:id="@+id/haithang"
+        android:title="2 tháng"/>
+    <item android:id="@+id/tatca"
+        android:title="Xóa tất cả"/>
+    <item android:id="@+id/clear_t"
+        android:title="Xóa tất cả dữ liệu"/>
+    <item android:title="Bật thông báo"
+        android:id="@+id/battb"/>
+    <item android:id="@+id/dddl"
+        android:title="Danh sách được lưu"/>
+</menu>

@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Application;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -63,81 +64,103 @@ public class trangcanhan extends AppCompatActivity
     private void sukiendong()
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(trangcanhan.this);
-        builder.setTitle("Thông báo");
-        builder.setMessage("Bạn có muốn thoát");
-        builder.setPositiveButton("Vâng", new DialogInterface.OnClickListener() {
+        builder.setTitle ("Notice");
+        builder.setMessage ("Do you want to exit");
+        builder.setPositiveButton ("Yes", new DialogInterface.OnClickListener () {
             @Override
-            public void onClick(DialogInterface dialog, int which)
+            public void onClick (DialogInterface dialog, int which)
             {
                 finish();
             }
         });
-        builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener () {
             @Override
-            public void onClick(DialogInterface dialog, int which)
+            public void onClick (DialogInterface dialog, int which)
             {
-                dialog.dismiss();
+                dialog.dismiss ();
             }
         });
         Dialog dialog1 = builder.create();
         dialog1.show();
     }
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+    }
+
     private void taodt()
     {
-        String ssa= MainActivity.tend.toString();
-        arrayList = new ArrayList<>();
-        dl = new dulieusqllite(trangcanhan.this,"dulieunguoidung.sqlite",null,1);
-        dl.truyvankhongtrakq("CREATE TABLE IF NOT EXISTS nguoidung(ID VARCHAR(50) PRIMARY KEY,ten VARCHAR(50),matkhau VARCHAR(100),ngaysinh VARCHAR(20),diachi VARCHAR(200))");
-        cursor = dl.truyvancoketqua("SELECT * FROM nguoidung WHERE ID='"+ssa+"'");
-        if(cursor != null)
-        {
-            while (cursor.moveToNext())
-            {
+        try {
+
+            String ssa = MainActivity.tend.toString();
+            arrayList = new ArrayList<>();
+            dl = new dulieusqllite(trangcanhan.this, "dulieunguoidung.sqlite", null, 1);
+            dl.truyvankhongtrakq("CREATE TABLE IF NOT EXISTS nguoidung(ID VARCHAR(50) PRIMARY KEY,ten VARCHAR(50),matkhau VARCHAR(100),ngaysinh VARCHAR(20),diachi VARCHAR(200))");
+            cursor = dl.truyvancoketqua("SELECT * FROM nguoidung WHERE ID='" + ssa + "'");
+            if (cursor != null) {
+                while (cursor.moveToNext()) {
                     String ten = cursor.getString(1).toString();
                     String mk = cursor.getString(2).toString();
                     String ngaysinh = cursor.getString(3).toString();
                     String diachi = cursor.getString(4).toString();
-                    arrayList.add(new thongtinnguoidung(ten,mk,ngaysinh,diachi));
+                    arrayList.add(new thongtinnguoidung(ten, mk, ngaysinh, diachi));
                     kk = 4;
+                }
             }
+            DoDuLieu();
         }
-        DoDuLieu();
+        catch (Exception e)
+        {
+            Toast.makeText(trangcanhan.this,"Error! An error occurred. Please try again later",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(trangcanhan.this,MainActivity.class);
+            startActivity(intent);
+        }
     }
+
 
     private void DoDuLieu()
     {
-        for(int i = 0;i < arrayList.size();++i)
+        try {
+
+            for (int i = 0; i < arrayList.size(); ++i) {
+                edtten.setText(arrayList.get(i).getHoten().toString());
+                edtmk.setText(arrayList.get(i).getMatkhau().toString());
+                edtns.setText(arrayList.get(i).getNgaysinh().toString());
+                edtdc.setText(arrayList.get(i).getDiachi().toString());
+            }
+        }
+        catch (Exception e)
         {
-            Toast.makeText(trangcanhan.this,"OK2",Toast.LENGTH_SHORT).show();
-            edtten.setText(arrayList.get(i).getHoten().toString());
-            edtmk.setText(arrayList.get(i).getMatkhau().toString());
-            edtns.setText(arrayList.get(i).getNgaysinh().toString());
-            edtdc.setText(arrayList.get(i).getDiachi().toString());
+            Toast.makeText(trangcanhan.this,"Error! An error occurred. Please try again later",Toast.LENGTH_SHORT).show();
+            intent = new Intent(trangcanhan.this,MainActivity.class);
+            startActivity(intent);
         }
     }
 
     private void ax()
     {
-        arrayList = new ArrayList<>();
+        try {
+
+            arrayList = new ArrayList<>();
             String id = MainActivity.tend.toString();
             firebaseDatabase = FirebaseDatabase.getInstance();
             databaseReference = firebaseDatabase.getReference("dangnhap");
             databaseReference.child(id).addValueEventListener(new ValueEventListener() {
                 @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot)
-                {
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
                     String Ma = snapshot.getKey().toString();
                     String Ten = snapshot.child("Tên").getValue().toString();
                     String Mk = snapshot.child("Mật khẩu").getValue().toString();
                     String diachi = snapshot.child("Địa chỉ").getValue().toString();
                     String ngaysinh = snapshot.child("Ngày sinh").getValue().toString();
-                    if (kk == 0) {
+                    if (kk == 0)
+                    {
                         dl.truyvankhongtrakq("INSERT INTO nguoidung VALUES('" + Ma + "','" + Ten + "','" + Mk + "','" + ngaysinh + "','" + diachi + "')");
                     }
 
-                        arrayList.add(new thongtinnguoidung(Ten,Mk,ngaysinh,diachi));
-                    for(int i = 0;i < arrayList.size();++i)
-                    {
+                    arrayList.add(new thongtinnguoidung(Ten, Mk, ngaysinh, diachi));
+                    for (int i = 0; i < arrayList.size(); ++i) {
                         edtten.setText(arrayList.get(i).getHoten().toString());
                         edtmk.setText(arrayList.get(i).getMatkhau().toString());
                         edtns.setText(arrayList.get(i).getNgaysinh().toString());
@@ -145,11 +168,20 @@ public class trangcanhan extends AppCompatActivity
                     }
 
                 }
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
 
+                @Override
+                public void onCancelled(@NonNull DatabaseError error)
+                {
+                    Toast.makeText(trangcanhan.this,"Please check the internet speed",Toast.LENGTH_SHORT).show();
                 }
             });
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(trangcanhan.this,"Data is conflicting, please login again",Toast.LENGTH_SHORT).show();
+            intent = new Intent(trangcanhan.this,MainActivity.class);
+            startActivity(intent);
+        }
 
     }
 

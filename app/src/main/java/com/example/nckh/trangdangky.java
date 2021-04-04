@@ -155,11 +155,11 @@ public class trangdangky extends AppCompatActivity {
                 if(task.isSuccessful()) {
                     String k = firebaseAuth.getCurrentUser().getUid().toString();
                     DatabaseReference databaseReference2 = databaseReference.child(k);
-                    databaseReference2.child("Tên").setValue(taikhoan);
-                    databaseReference2.child("Mật khẩu").setValue(mk);
-                    databaseReference2.child("Địa chỉ").setValue(edtdc.getText().toString());
-                    databaseReference2.child("Ngày sinh").setValue(edtns.getText().toString());
-                    progressDialog.dismiss();
+                    databaseReference2.child("Name").setValue(taikhoan);
+                    databaseReference2.child("Password").setValue(mk);
+                    databaseReference2.child("Address").setValue(edtdc.getText ().toString());
+                    databaseReference2.child("Date of Birth").setValue(edtns.getText().toString());
+                    progressDialog.dismiss ();
                     finish();
                 }
                 else
@@ -178,8 +178,8 @@ public class trangdangky extends AppCompatActivity {
     private void ax()
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(trangdangky.this);
-        builder.setTitle("THÔNG BÁO");
-        builder.setMessage("Bạn có muốn thoát");
+        builder.setTitle("NOTICE");
+        builder.setMessage ("Do you want to exit");
         builder.setPositiveButton("YES", new DialogInterface.OnClickListener()
         {
             @Override

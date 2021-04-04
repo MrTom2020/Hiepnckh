@@ -36,27 +36,43 @@ public class tranghai extends TabActivity {
         String ms;
         if(ret == true)
         {
-            ms = "Thiết bị có kết nối Internet và có thể tiến hành online";
+            ms = "The device has an Internet connection and can be done online";
         }
         else
         {
-            ms = "Thiết bị không có kết nối Internet và có thể tiến hành offline";
+            ms = "The device does not have an Internet connection and can be performed offline";
         }
         Toast.makeText(tranghai.this,ms,Toast.LENGTH_SHORT).show();
     }
+
     private void ax()
     {
-      tabSpec = tabHost.newTabSpec("Thông tin");
-       tabSpec.setIndicator("Thông tin");
-       intent = new Intent(this,tranghienthi.class);
-       tabSpec.setContent(intent);
-       tabHost.addTab(tabSpec);
+        tabSpec = tabHost.newTabSpec ("Info");
+        tabSpec.setIndicator ("Info");
+        intent = new Intent (this, tranghienthi.class);
+        tabSpec.setContent (intent);
+        tabHost.addTab (tabSpec);
 
-       tabSpec = tabHost.newTabSpec("Tài khoản");
-       tabSpec.setIndicator("Tài khoản");
-       intent = new Intent(this,trangcanhan.class);
-       tabSpec.setContent(intent);
-       tabHost.addTab(tabSpec);
+        tabSpec = tabHost.newTabSpec ("Account");
+        tabSpec.setIndicator ("Account");
+        intent = new Intent (this, trangcanhan.class);
+        tabSpec.setContent (intent);
+        tabHost.addTab (tabSpec);
+
+
+        tabSpec = tabHost.newTabSpec ("News");
+        tabSpec.setIndicator ("News");
+        intent = new Intent (this, tintuc.class);
+        tabSpec.setContent (intent);
+        tabHost.addTab (tabSpec);
+
+
+        tabSpec = tabHost.newTabSpec ("Ranking");
+        tabSpec.setIndicator ("Rank");
+        intent = new Intent (this, BangXepHang.class);
+        tabSpec.setContent (intent);
+        tabHost.addTab (tabSpec);
+
        tabHost.setCurrentTab(1);
 
     }

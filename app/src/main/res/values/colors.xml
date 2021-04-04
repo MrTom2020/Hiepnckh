@@ -8,4 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="mau1">#efefef</color>
+    <color name="mau2">#93cb52</color>
+    <color name="mau3">#333333</color>
 </resources>

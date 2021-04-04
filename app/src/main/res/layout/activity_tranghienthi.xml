@@ -25,8 +25,8 @@
         android:layout_height="133dp"
         android:layout_above="@+id/bc"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="15dp"
-        android:layout_marginBottom="22dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="20dp"
         android:gravity="center"
         android:text="TextView"
         android:textAlignment="center" />
@@ -36,10 +36,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/bc"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="17dp"
-        android:layout_marginBottom="45dp"
-        android:layout_toStartOf="@+id/btnmdkk"
+        android:layout_marginStart="17dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="97dp"
         android:layout_toEndOf="@+id/txtnd"
         android:text="TextView" />
 
@@ -48,30 +47,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/txtda"
-        android:layout_marginEnd="17dp"
-        android:layout_marginBottom="38dp"
-        android:layout_toStartOf="@+id/btnmdbui"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="17dp"
+        android:layout_toEndOf="@+id/txtnd"
         android:text="TextView" />
-
-    <Button
-        android:id="@+id/btnmdkk"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/bc"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="2dp"
-        android:layout_marginBottom="23dp"
-        android:text="Mật độ không khí" />
-
-    <Button
-        android:id="@+id/btnmdbui"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/btnmdkk"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="59dp"
-        android:layout_marginBottom="22dp"
-        android:text="Mật độ bụi" />
 
     <ScrollView
         android:layout_width="wrap_content"
@@ -89,34 +68,46 @@
             android:orientation="vertical">
             <CheckBox
                 android:id="@+id/c1"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <CheckBox
                 android:id="@+id/c2"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <CheckBox
                 android:id="@+id/c3"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <CheckBox
                 android:id="@+id/c4"
                 android:layout_width="match_parent"
-                android:layout_height="17dp" />
+                android:layout_height="wrap_content" />
             <CheckBox
                 android:id="@+id/c5"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <CheckBox
                 android:id="@+id/c6"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <CheckBox
                 android:id="@+id/c7"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/btnmdbui"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="PM 2.5 " />
+
+            <Button
+                android:id="@+id/btnmdkk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="AQI" />
         </LinearLayout>
     </ScrollView>
 
@@ -124,10 +115,41 @@
         android:id="@+id/imgluu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/btnmdbui"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="7dp"
-        android:layout_marginBottom="0dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="104dp"
         android:src="@drawable/savve" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="113dp"
+        android:layout_height="111dp"
+        android:layout_above="@+id/txtttht"
+        android:layout_marginStart="23dp"
+        android:layout_marginBottom="14dp"
+        android:layout_toEndOf="@+id/textView9"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/txtttht"
+        android:layout_width="183dp"
+        android:layout_height="53dp"
+        android:layout_above="@+id/bc"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="11dp"
+        android:layout_marginBottom="11dp"
+        android:text="TextView" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="56dp"
+        android:layout_height="45dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="6dp"
+        android:src="@drawable/broom" />
 
 </RelativeLayout>
