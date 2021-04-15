@@ -22,7 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class trangdangky extends AppCompatActivity {
+public class    trangdangky extends AppCompatActivity {
 
     private EditText edtten,edtmk,edtdc,edtns;
     private Button btnthoat,btndy;
@@ -154,7 +154,7 @@ public class trangdangky extends AppCompatActivity {
             {
                 if(task.isSuccessful()) {
                     String k = firebaseAuth.getCurrentUser().getUid().toString();
-                    DatabaseReference databaseReference2 = databaseReference.child(k);
+                    DatabaseReference databaseReference2 = databaseReference.child(k+"/k");
                     databaseReference2.child("Name").setValue(taikhoan);
                     databaseReference2.child("Password").setValue(mk);
                     databaseReference2.child("Address").setValue(edtdc.getText ().toString());

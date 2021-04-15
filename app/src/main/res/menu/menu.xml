@@ -12,6 +12,9 @@
         android:title="Xóa tất cả dữ liệu"/>
     <item android:title="Bật thông báo"
         android:id="@+id/battb"/>
+    <item android:id="@+id/save"
+        android:title="Lưu thông tin"/>
     <item android:id="@+id/dddl"
         android:title="Danh sách được lưu"/>
+
 </menu>

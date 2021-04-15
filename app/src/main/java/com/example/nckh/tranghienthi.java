@@ -76,7 +76,7 @@ public class tranghienthi extends Activity {
     private Button btnmdbui,btnmdkk;
     private TextView txtnd,txtda,txtmq135,txttt;
     private ImageView imageView;
-    private ImageButton imageButton,imageButton2;
+    private ImageButton imageButton2;
     private String tt ="";
     private dulieusqllite dl;
     private RelativeLayout relativeLayout;
@@ -116,7 +116,6 @@ public class tranghienthi extends Activity {
         c5 = (CheckBox)findViewById(R.id.c5);
         c6 = (CheckBox)findViewById(R.id.c6);
         c7 = (CheckBox)findViewById(R.id.c7);
-        imageButton = (ImageButton)findViewById(R.id.imgluu);
         txtnd = (TextView)findViewById(R.id.txtnd);
         txtda =(TextView)findViewById(R.id.txtda);
         btnmdbui = (Button)findViewById(R.id.btnmdbui);
@@ -167,6 +166,9 @@ public class tranghienthi extends Activity {
                 DialoglistData();
                 break;
             case R.id.battb:
+                break;
+            case R.id.save:
+                GetAskUser();
                 break;
         }
         return super.onContextItemSelected(item);
@@ -360,7 +362,6 @@ public class tranghienthi extends Activity {
     {
         btnmdkk.setOnClickListener(new sukiencuatoi());
         btnmdbui.setOnClickListener(new sukiencuatoi());
-        imageButton.setOnClickListener(new sukiencuatoi());
     }
     private void check()
     {
@@ -372,7 +373,6 @@ public class tranghienthi extends Activity {
             tt = "ok";
             btnmdkk.setEnabled(true);
             btnmdbui.setEnabled(true);
-            imageButton.setEnabled(true);
         }
         else
         {
@@ -380,7 +380,6 @@ public class tranghienthi extends Activity {
             tt = "ko";
             btnmdkk.setEnabled(false);
             btnmdbui.setEnabled(false);
-            imageButton.setEnabled(false);
         }
         Toast.makeText(tranghienthi.this,ms,Toast.LENGTH_SHORT).show();
     }
@@ -404,11 +403,6 @@ public class tranghienthi extends Activity {
             if(view.equals(btnmdbui))
             {
                 doc2(chuoi);
-            }
-            if(view.equals(imageButton))
-            {
-                Toast.makeText(tranghienthi.this,"Successfully saved data",Toast.LENGTH_SHORT).show();
-                GetAskUser();
             }
         }
     }

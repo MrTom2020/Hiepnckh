@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".tranghienthi"
-    android:id="@+id/rl">
+    android:id="@+id/rl"
+    android:background="@color/mau3">
 
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/bc"
@@ -17,7 +18,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="4dp"
         android:layout_marginEnd="12dp"
-        android:layout_marginBottom="133dp" />
+        android:layout_marginBottom="133dp"
+        android:background="#dadad9"/>
 
     <TextView
         android:id="@+id/txtnd"
@@ -28,7 +30,8 @@
         android:layout_marginStart="10dp"
         android:layout_marginBottom="20dp"
         android:gravity="center"
-        android:text="TextView"
+        android:background="@color/mau2"
+        android:textColor="@color/mau3"
         android:textAlignment="center" />
 
     <TextView
@@ -40,7 +43,8 @@
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="97dp"
         android:layout_toEndOf="@+id/txtnd"
-        android:text="TextView" />
+        android:background="@color/mau2"
+        android:textColor="@color/mau3"/>
 
     <TextView
         android:id="@+id/textView9"
@@ -50,15 +54,16 @@
         android:layout_marginStart="15dp"
         android:layout_marginBottom="17dp"
         android:layout_toEndOf="@+id/txtnd"
-        android:text="TextView" />
+        android:background="@color/mau2"
+        android:textColor="@color/mau3"/>
 
     <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="127dp"
+        android:layout_width="403dp"
+        android:layout_height="139dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="-7dp"
+        android:layout_marginStart="0dp"
         android:layout_marginEnd="9dp"
         android:layout_marginBottom="-6dp">
 
@@ -66,6 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="104dp"
             android:orientation="vertical">
+
             <CheckBox
                 android:id="@+id/c1"
                 android:layout_width="match_parent"
@@ -80,18 +86,22 @@
                 android:id="@+id/c3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
             <CheckBox
                 android:id="@+id/c4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
             <CheckBox
                 android:id="@+id/c5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
             <CheckBox
                 android:id="@+id/c6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
             <CheckBox
                 android:id="@+id/c7"
                 android:layout_width="match_parent"
@@ -101,26 +111,22 @@
                 android:id="@+id/btnmdbui"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="PM 2.5 " />
+                android:background="@drawable/tuybiennut2"
+                android:paddingBottom="20sp"
+                android:text="PM 2.5 "
+                android:textColor="#ffffff"/>
 
             <Button
                 android:id="@+id/btnmdkk"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="AQI" />
+                android:background="@drawable/tuybiennut2"
+                android:text="AQI"
+                android:textColor="#ffffff" />
         </LinearLayout>
     </ScrollView>
 
-    <ImageButton
-        android:id="@+id/imgluu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="9dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="104dp"
-        android:src="@drawable/savve" />
+
 
     <ImageView
         android:id="@+id/imageView2"
@@ -140,16 +146,19 @@
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="11dp"
         android:layout_marginBottom="11dp"
-        android:text="TextView" />
+        android:background="@color/mau2"
+        android:textColor="@color/mau3"/>
 
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="56dp"
-        android:layout_height="45dp"
+        android:layout_width="48dp"
+        android:layout_height="43dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="6dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="7dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
         android:src="@drawable/broom" />
 
 </RelativeLayout>
