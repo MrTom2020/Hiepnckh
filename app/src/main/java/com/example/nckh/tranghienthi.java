@@ -762,7 +762,7 @@ public class tranghienthi extends Activity {
                                     txtnd.setCompoundDrawablesWithIntrinsicBounds(R.drawable.thermometer, 0, 0, 0);
                                     txtda.setText("  : " + jsonObject.getString("doam") + " % ");
                                     txtda.setCompoundDrawablesWithIntrinsicBounds(R.drawable.droplets, 0, 0, 0);
-                                    txtmq135.setText(" AQI : " + jsonObject.getString("mq135") + "µm");
+                                    txtmq135.setText(" AQI : " + jsonObject.getString("mq135"));
                                     sl--;
                                 }
                             }
