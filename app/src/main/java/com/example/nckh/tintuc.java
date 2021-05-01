@@ -62,7 +62,7 @@ public class tintuc extends AppCompatActivity {
     }
     private void doc()
     {
-        String ss = "http://api.airvisual.com/v2/city?city=Ho%20Chi%20Minh%20City&state=Ho%20Chi%20Minh%20City&country=Vietnam&key=02e0b493-ba7c-45aa-a896-d210bc2c4e8d";
+        String ss = "http://api.airvisual.com/v2/city?city=Thu%20Dau%20Mot&state=Tinh%20Binh%20Duong&country=Vietnam&key=02e0b493-ba7c-45aa-a896-d210bc2c4e8d";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, ss, null, new Response.Listener<JSONObject>() {
             @Override
@@ -99,8 +99,14 @@ public class tintuc extends AppCompatActivity {
                         String b= pm >= 350.5 ? "Very dangerous":pm >= 250.5 ? "Danger":pm >= 150.5 ? "Very bad impact on health":pm >=65.5 ? "Bad effects on health":pm >=40.5 ? "Affect sensitive groups":pm >= 15.5 ? "Medium":"Good";
                         int kq = ic == "01d" ? R.drawable.dmot: ic == "01n" ? R.drawable.nmot:ic == "02d" ? R.drawable.dhai:ic == "02n" ? R.drawable.nhai:ic == "03d" ? R.drawable.dba:ic == "04d" ? R.drawable.dbon:ic == "09d" ? R.drawable.dchin:ic == "10d" ? R.drawable.dmuoi:ic == "10n" ?R.drawable.nmuoi:R.drawable.dmuoimot;
                         txtda.setText("Humidity :" + Humidity + "%");
+                        txtda.setBackgroundColor(0xff333333);
+                        txtda.setTextColor(0xffffff01);
                         txtnd.setText("Temperature :"+Temperature + "C");
+                        txtnd.setBackgroundColor(0xff333333);
+                        txtnd.setTextColor(0xffffff01);
                         txttdg.setText("Wind speed : "+wind_speed + "Km/h");
+                        txttdg.setBackgroundColor(0xff333333);
+                        txttdg.setTextColor(0xffffff01);
                         txtkk.setText("AQI : "+Aqi);
                         txtkk.setTextColor(kq3);
                         txtkk.setBackgroundColor(0xff333333);
@@ -110,6 +116,8 @@ public class tintuc extends AppCompatActivity {
                         img.setImageResource(kq);
                         imgtt.setBackgroundResource(kq2);
                         txtten.setText("Country : " + country + "\nState : " + state + "\nCity : " + city);
+                        txtten.setBackgroundColor(0xff333333);
+                        txtten.setTextColor(0xffffff01);
                         txttt.setText("AQI :"+ a +"\nPM 2.5 :" + b);
                     } catch (JSONException e)
                     {

@@ -1,11 +1,12 @@
-package com.example.nckh;
+package com.example.nckh.Service;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
-import android.net.Network;
 import android.net.NetworkInfo;
+
+import com.example.nckh.model.WifiApp;
 
 public class ConnectionReceiver extends BroadcastReceiver
 {

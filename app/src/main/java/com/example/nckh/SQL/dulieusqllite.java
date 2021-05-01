@@ -1,4 +1,4 @@
-package com.example.nckh;
+package com.example.nckh.SQL;
 
 import android.content.Context;
 import android.database.Cursor;

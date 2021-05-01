@@ -1,5 +1,6 @@
 package com.example.nckh;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -9,17 +10,25 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
+import com.example.nckh.SQL.dulieusqllite;
+import com.example.nckh.Service.ConnectionReceiver;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends Activity {
 
@@ -28,6 +37,8 @@ public class MainActivity extends Activity {
     private TextView txt;
     private FirebaseAuth firebaseAuth;
     private Intent intent;
+    private FirebaseDatabase database;
+    private DatabaseReference databaseReference;
     static  int c = 12345;
     static String tend,ten1;
     private Cursor cursor;
@@ -40,7 +51,6 @@ public class MainActivity extends Activity {
         dangkynut();
         check();
         dangkysukien();
-        
     }
     private void check()
     {
@@ -100,6 +110,7 @@ public class MainActivity extends Activity {
         check();
         super.onStart();
     }
+
     private void dangkynut()
     {
         edtten = (EditText)findViewById(R.id.use);
@@ -189,7 +200,7 @@ public class MainActivity extends Activity {
             String ten = edtten.getText().toString();
             String mk = edtmk.getText().toString();
             firebaseAuth = FirebaseAuth.getInstance();
-            firebaseAuth.signInWithEmailAndPassword(ten.trim(), mk.trim()).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+            firebaseAuth.signInWithEmailAndPassword("tomhumchinvn@gmail.com", "123456789").addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task)
                 {

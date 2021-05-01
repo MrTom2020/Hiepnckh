@@ -3,36 +3,25 @@ package com.example.nckh;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.DownloadManager;
-import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.ProgressDialog;
-import android.app.VoiceInteractor;
 import android.content.DialogInterface;
 import android.database.Cursor;
-import android.graphics.Color;
-import android.graphics.Point;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.ContextMenu;
-import android.view.Display;
-import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.NotificationCompat;
+import androidx.annotation.Nullable;
 import androidx.core.app.NotificationManagerCompat;
 
 import com.android.volley.Request;
@@ -42,31 +31,28 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.anychart.core.lineargauge.pointers.Bar;
-import com.anychart.core.ui.Label;
+import com.example.nckh.Adapter.trangAdp;
+import com.example.nckh.SQL.dulieusqllite;
+import com.example.nckh.Service.ConnectionReceiver;
+import com.example.nckh.model.thongtin;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
-import com.github.mikephil.charting.utils.Transformer;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Node;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
-
-import static com.example.nckh.WifiApp.cb;
 
 public class tranghienthi extends Activity {
 
@@ -77,15 +63,21 @@ public class tranghienthi extends Activity {
     private TextView txtnd,txtda,txtmq135,txttt;
     private ImageView imageView;
     private ImageButton imageButton2;
+    private FirebaseDatabase database;
+    private DatabaseReference databaseReference;
     private String tt ="";
+    private Double d;
+    private int nn = 1;
+    private Double kk;
     private dulieusqllite dl;
     private RelativeLayout relativeLayout;
+    private BarData barData = new BarData();
+    private BarDataSet barDataSet;
     private Cursor cursor;
     private String chuoi = "https://hiep2020.000webhostapp.com/nhut/ESPselectdatabase.php";
     private ArrayList<BarEntry> arrayList = new ArrayList<>();
     private  LineChart lineChart;
-    private ArrayList<thongtin> arrayList5;
-    private ArrayList<thongtin> arrayListtt;
+    private ArrayList<thongtin> arrayList5 = new ArrayList<>(),arrayListtt = new ArrayList<>();
     private NotificationManagerCompat notificationManagerCompat;
     private trangAdp adapter;
     private ProgressDialog progressDialog;
@@ -98,12 +90,10 @@ public class tranghienthi extends Activity {
         notificationManagerCompat =NotificationManagerCompat.from(this);
         check();
         taodt();
+        ax3();
         doc2(chuoi);
         registerForContextMenu(imageButton2);
-
-    //  dl.truyvankhongtrakq("delete FROM ThongTin");
         dangkysukien();
-
     }
     private void dangkynut()
     {
@@ -173,7 +163,63 @@ public class tranghienthi extends Activity {
         }
         return super.onContextItemSelected(item);
     }
+    public void ax3()
+    {
+        barChart.clear();
+        barData.clearValues();
+        arrayList = new ArrayList<>();
+            database = FirebaseDatabase.getInstance();
+            databaseReference = database.getReference("lichsu");
+            databaseReference.limitToLast(3).addChildEventListener(new ChildEventListener() {
+                @Override
+                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName)
+                {
+                    Random r1 = new Random(),r2 = new Random();
+                    int k11 = r1.nextInt(100000);
+                    int k22 = r2.nextInt(100000);
+                    String kkk = String.valueOf(nn);
+                    Toast.makeText(tranghienthi.this,snapshot.getValue().toString(),Toast.LENGTH_SHORT).show();
+                    String nd = snapshot.child("nhietdo").getValue().toString();
+                    String da= snapshot.child("doam").getValue().toString();
+                    String tg= snapshot.child("Thoigian").getValue().toString();
+                    String clkk= snapshot.child("chatluongkk").getValue().toString();
+                    String mdb= snapshot.child("matdobui").getValue().toString();
+                    double dd = Double.parseDouble(clkk);
+                    doc3(kkk,nd,da,clkk,mdb,tg,dd);
+                    nn++;
+                }
 
+                @Override
+                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                }
+
+                @Override
+                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                }
+
+                @Override
+                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        c1.setBackgroundColor(0xff01b0f1);
+        c2.setBackgroundColor(0xffffff01);
+        c3.setBackgroundColor(0xffffbe00);
+        c4.setBackgroundColor(0xfffe0000);
+        c5.setBackgroundColor(0xffcc9900);
+        c1.setText ("Good");
+        c2.setText ("Average");
+        c3.setText ("Poor");
+        c4.setText ("Bad");
+        c5.setText ("Dangerous");
+    }
     private void ClearAllData()
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -398,7 +444,8 @@ public class tranghienthi extends Activity {
         {
             if(view.equals(btnmdkk))
             {
-                doc(chuoi);
+                //doc(chuoi);
+                ax3();
             }
             if(view.equals(btnmdbui))
             {
@@ -439,6 +486,53 @@ public class tranghienthi extends Activity {
             }
         }
     }
+    private void doc3(String key,String nhietdo,String doam,String clkk,String mdbui,String tg,double t)
+    {
+        ArrayList<BarEntry> arrayList3 = new ArrayList<>();
+        //arrayList3.clear();
+        arrayList3.add(new BarEntry(Float.parseFloat(key), Float.parseFloat(clkk)));
+        barDataSet = new BarDataSet(arrayList3, " " + tg + "            ");
+        if (t >= 0 && t <= 51)
+        {
+            barDataSet.setColors(0xff01b0f1);
+            barDataSet.setValueTextSize(3f);
+        } else if (t > 50 && t < 101)
+        {
+            barDataSet.setColors(0xffffff01);
+            barDataSet.setValueTextSize(3f);
+        }
+        else if ( t > 100 && t < 201)
+        {
+            barDataSet.setColors(0xffffbe00);
+            barDataSet.setValueTextSize(3f);
+        }
+        else if ( t > 200 && t < 301)
+        {
+            barDataSet.setColors(0xfffe0000);
+            barDataSet.setValueTextSize(3f);
+        }
+        else
+            {
+                barDataSet.setColors(0xffcc9900);
+                barDataSet.setBarBorderWidth(1f);
+            }
+        barData.addDataSet(barDataSet);
+        kk = mdbui == "" ? Double.parseDouble(mdbui) : 0;
+        txtnd.setText(nhietdo + " C ");
+        txtnd.setCompoundDrawablesWithIntrinsicBounds(R.drawable.thermometer, 0, 0, 0);
+        txtda.setText(" : " + doam + " % ");
+        txtda.setCompoundDrawablesWithIntrinsicBounds(R.drawable.droplets, 0, 0, 0);
+        txtmq135.setText(" PM 2.5 " + mdbui + "μg/m3");
+        //GetRults(d,kk);
+        barChart.setData(barData);
+        barChart.setBackgroundColor(0xff333333);
+        barChart.getAxisRight().setEnabled(false);
+        barChart.getLegend().setXEntrySpace(19f);
+        barChart.getXAxis().setEnabled(false);
+        barChart.getDescription().setText("AQI");
+        barChart.invalidate();
+
+    }
     private void doc(String chuoi)
     {
         arrayList5 = new ArrayList<>();
@@ -451,9 +545,6 @@ public class tranghienthi extends Activity {
             @Override
             public void onResponse(JSONArray response)
             {
-                BarData barData = new BarData();
-                BarDataSet barDataSet1;
-                BarDataSet barDataSet;
                 int sl = 5;
                 if (response.length() > 1) {
                     for (int i = response.length() - 1; i > 0  ; --i)
@@ -476,45 +567,27 @@ public class tranghienthi extends Activity {
                                     } else {
                                         d = Double.parseDouble(nd);
                                     }
-                                    arrayList.add(new BarEntry(Float.parseFloat(id), Float.parseFloat(nd)));
+                                    ArrayList<BarEntry> arrayList3 = new ArrayList<>();
+                                    arrayList3.add(new BarEntry(Float.parseFloat(id), Float.parseFloat(nd)));
+                                    barDataSet = new BarDataSet(arrayList3, " " + jsonObject.getString("time") + "            ");
                                     if (d > 0 && d <= 51) {
-                                        ArrayList<BarEntry> arrayList2 = new ArrayList<>();
-                                        arrayList2.add(new BarEntry(Float.parseFloat(id), Float.parseFloat(nd)));
-                                        barDataSet1 = new BarDataSet(arrayList2, " " + jsonObject.getString("time") + "            ");
-                                        barDataSet1.setColors(0xff01b0f1);
-                                        barDataSet1.setBarBorderWidth(1f);
-                                        barData.addDataSet(barDataSet1);
+                                        barDataSet.setColors(0xff01b0f1);
+                                        barDataSet.setBarBorderWidth(1f);
                                     } else if (d > 50 && d < 101) {
-                                        ArrayList<BarEntry> arrayList3 = new ArrayList<>();
-                                        arrayList3.add(new BarEntry(Float.parseFloat(id), Float.parseFloat(nd)));
-                                        barDataSet = new BarDataSet(arrayList3, " " + jsonObject.getString("time") + "            ");
                                         barDataSet.setColors(0xffffff01);
                                         barDataSet.setBarBorderWidth(1f);
-                                        barData.addDataSet(barDataSet);
-
                                     } else if (d > 100 && d < 201) {
-                                        ArrayList<BarEntry> arrayList4 = new ArrayList<>();
-                                        arrayList4.add(new BarEntry(Float.parseFloat(id), Float.parseFloat(nd)));
-                                        barDataSet = new BarDataSet(arrayList4, " " + jsonObject.getString("time") + "            ");
                                         barDataSet.setColors(0xffffbe00);
                                         barDataSet.setBarBorderWidth(1f);
-                                        barData.addDataSet(barDataSet);
                                     } else if (d > 200 && d < 301) {
-                                        ArrayList<BarEntry> arrayList4 = new ArrayList<>();
-                                        arrayList4.add(new BarEntry(Float.parseFloat(id), Float.parseFloat(nd)));
-                                        barDataSet = new BarDataSet(arrayList4, " " + jsonObject.getString("time") + "            ");
                                         barDataSet.setColors(0xfffe0000);
                                         barDataSet.setBarBorderWidth(1f);
-                                        barData.addDataSet(barDataSet);
                                     } else {
-                                        ArrayList<BarEntry> arrayList4 = new ArrayList<>();
-                                        arrayList4.add(new BarEntry(Float.parseFloat(id), Float.parseFloat(nd)));
-                                        barDataSet = new BarDataSet(arrayList4, " " + jsonObject.getString("time") + "             ");
                                         barDataSet.setColors(0xffcc9900);
                                         barDataSet.setBarBorderWidth(1f);
-                                        barData.addDataSet(barDataSet);
                                     }
-                                    Double kk = jsonObject.getString("density") == "" ? Double.parseDouble(jsonObject.getString("density")) : 0;
+                                    barData.addDataSet(barDataSet);
+                                    kk = jsonObject.getString("density") == "" ? Double.parseDouble(jsonObject.getString("density")) : 0;
                                     txtnd.setText(jsonObject.getString("nhietdo") + " C ");
                                     txtnd.setCompoundDrawablesWithIntrinsicBounds(R.drawable.thermometer, 0, 0, 0);
                                     txtda.setText(" : " + jsonObject.getString("doam") + " % ");
@@ -539,13 +612,13 @@ public class tranghienthi extends Activity {
                 }
             }
         },
-        new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error)
-            {
-               Toast.makeText(tranghienthi.this,error.toString(),Toast.LENGTH_SHORT).show();
-            }
-        });
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error)
+                    {
+                        Toast.makeText(tranghienthi.this,error.toString(),Toast.LENGTH_SHORT).show();
+                    }
+                });
         c1.setBackgroundColor(0xff01b0f1);
         c2.setBackgroundColor(0xffffff01);
         c3.setBackgroundColor(0xffffbe00);
@@ -559,6 +632,7 @@ public class tranghienthi extends Activity {
         jsonArrayRequest.setShouldCache(false);
         requestQueue.add(jsonArrayRequest);
     }
+
     private void GetRults(double kk, double bui)
     {
         txttt.setText("");
@@ -705,58 +779,33 @@ public class tranghienthi extends Activity {
                                     } else {
                                         d = Double.parseDouble(nd);
                                     }
+                                    ArrayList<BarEntry> arrayList2 = new ArrayList<>();
+                                    arrayList2.add(new BarEntry(Float.parseFloat(id), Float.parseFloat(nd)));
+                                    barDataSet = new BarDataSet(arrayList2, " " + jsonObject.getString("time") + "            ");
                                     arrayList.add(new BarEntry(Float.parseFloat(id), Float.parseFloat(nd)));
                                     if (d > -1 && d < 15.5) {
-                                        ArrayList<BarEntry> arrayList2 = new ArrayList<>();
-                                        arrayList2.add(new BarEntry(Float.parseFloat(id), Float.parseFloat(nd)));
-                                        barDataSet1 = new BarDataSet(arrayList2, " " + jsonObject.getString("time") + "            ");
-                                        barDataSet1.setColors(0xff01b0f1);
-                                        barDataSet1.setBarBorderWidth(1f);
-                                        barData.addDataSet(barDataSet1);
+                                        barDataSet.setColors(0xff01b0f1);
+                                        barDataSet.setBarBorderWidth(1f);
                                     } else if (d > 15.4 && d <= 40.5) {
-                                        ArrayList<BarEntry> arrayList3 = new ArrayList<>();
-                                        arrayList3.add(new BarEntry(Float.parseFloat(id), Float.parseFloat(nd)));
-                                        barDataSet = new BarDataSet(arrayList3, " " + jsonObject.getString("time") + "            ");
                                         barDataSet.setColors(0xffffff01);
                                         barDataSet.setBarBorderWidth(1f);
-                                        barData.addDataSet(barDataSet);
-
                                     } else if (d > 40.4 && d <= 65.5) {
-                                        ArrayList<BarEntry> arrayList4 = new ArrayList<>();
-                                        arrayList4.add(new BarEntry(Float.parseFloat(id), Float.parseFloat(nd)));
-                                        barDataSet = new BarDataSet(arrayList4, " " + jsonObject.getString("time") + "            ");
                                         barDataSet.setColors(0xffffbe00);
                                         barDataSet.setBarBorderWidth(1f);
-                                        barData.addDataSet(barDataSet);
                                     } else if (d > 65.4 && d <= 150.5) {
-                                        ArrayList<BarEntry> arrayList4 = new ArrayList<>();
-                                        arrayList4.add(new BarEntry(Float.parseFloat(id), Float.parseFloat(nd)));
-                                        barDataSet = new BarDataSet(arrayList4, " " + jsonObject.getString("time") + "            ");
                                         barDataSet.setColors(0xfffe0000);
                                         barDataSet.setBarBorderWidth(1f);
-                                        barData.addDataSet(barDataSet);
                                     } else if (d > 150.4 && d <= 250.5) {
-                                        ArrayList<BarEntry> arrayList4 = new ArrayList<>();
-                                        arrayList4.add(new BarEntry(Float.parseFloat(id), Float.parseFloat(nd)));
-                                        barDataSet = new BarDataSet(arrayList4, " " + jsonObject.getString("time") + "             ");
                                         barDataSet.setColors(0xffcc9900);
                                         barDataSet.setBarBorderWidth(1f);
-                                        barData.addDataSet(barDataSet);
                                     } else if (d > 250.4 && d < 350.5) {
-                                        ArrayList<BarEntry> arrayList4 = new ArrayList<>();
-                                        arrayList4.add(new BarEntry(Float.parseFloat(id), Float.parseFloat(nd)));
-                                        barDataSet = new BarDataSet(arrayList4, " " + jsonObject.getString("time") + "             ");
                                         barDataSet.setColors(0xffff0000);
                                         barDataSet.setBarBorderWidth(1f);
-                                        barData.addDataSet(barDataSet);
                                     } else if (d > 350.4 && d < 500.5) {
-                                        ArrayList<BarEntry> arrayList4 = new ArrayList<>();
-                                        arrayList4.add(new BarEntry(Float.parseFloat(id), Float.parseFloat(nd)));
-                                        barDataSet = new BarDataSet(arrayList4, " " + jsonObject.getString("time") + "             ");
                                         barDataSet.setColors(0xffa60331);
                                         barDataSet.setBarBorderWidth(1f);
-                                        barData.addDataSet(barDataSet);
                                     }
+                                    barData.addDataSet(barDataSet);
                                     kk = jsonObject.getString("mq135").toString() == "" ? Double.parseDouble(jsonObject.getString("mq135")) : 0;
                                     txtnd.setText(jsonObject.getString("nhietdo") + " C ");
                                     txtnd.setCompoundDrawablesWithIntrinsicBounds(R.drawable.thermometer, 0, 0, 0);
@@ -766,7 +815,8 @@ public class tranghienthi extends Activity {
                                     sl--;
                                 }
                             }
-                        } catch (JSONException e) {
+                        } catch (JSONException e)
+                        {
                             e.printStackTrace();
                         }
 

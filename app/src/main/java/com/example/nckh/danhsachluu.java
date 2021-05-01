@@ -1,13 +1,13 @@
 package com.example.nckh;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ListView;
-import android.widget.Toast;
+
+import com.example.nckh.Adapter.trangAdp;
+import com.example.nckh.SQL.dulieusqllite;
+import com.example.nckh.model.thongtin;
 
 import java.util.ArrayList;
 

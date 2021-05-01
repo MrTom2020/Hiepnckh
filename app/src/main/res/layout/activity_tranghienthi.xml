@@ -148,10 +148,10 @@
         android:layout_height="53dp"
         android:layout_above="@+id/bc"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="11dp"
+        android:layout_marginEnd="-20dp"
         android:layout_marginBottom="11dp"
         android:background="@drawable/tuybiennn"
-        android:textColor="@color/mau3"/>
+        android:textColor="@color/mau3" />
 
     <ImageButton
         android:id="@+id/imageButton"

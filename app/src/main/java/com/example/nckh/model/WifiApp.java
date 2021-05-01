@@ -1,4 +1,4 @@
-package com.example.nckh;
+package com.example.nckh.model;
 
 import android.app.Application;
 import android.app.NotificationChannel;

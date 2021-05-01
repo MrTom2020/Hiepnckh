@@ -1,14 +1,13 @@
 package com.example.nckh;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TabHost;
-import android.widget.TabHost.TabSpec;
 import android.widget.Toast;
+
+import com.example.nckh.Service.ConnectionReceiver;
 
 public class tranghai extends TabActivity {
 
