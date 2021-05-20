@@ -1,33 +1,24 @@
 package com.example.nckh;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.VoiceInteractor;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.gson.JsonObject;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import retrofit2.Call;
-import retrofit2.Callback;
 
 public class tintuc extends AppCompatActivity {
 
@@ -45,16 +36,16 @@ public class tintuc extends AppCompatActivity {
     }
     private void addControl()
     {
-        txtnd = (TextView)findViewById(R.id.txtndtt);
-        txtda = (TextView)findViewById(R.id.txtdamtt);
-        txtten = (TextView)findViewById(R.id.txtvt);
-        txttt = (TextView)findViewById(R.id.txtthongtin);
-        txttdg = (TextView)findViewById(R.id.txtgio);
-        txtbui = (TextView)findViewById(R.id.txtpmtt);
-        txtkk =  (TextView)findViewById(R.id.txtaqi);
-        img = (ImageView)findViewById(R.id.imgtt);
-        imgtt = (ImageView)findViewById(R.id.imgttt);
-        btn = (Button)findViewById(R.id.btnl);
+        txtnd = findViewById(R.id.txtndtt);
+        txtda = findViewById(R.id.txtdamtt);
+        txtten =  findViewById(R.id.txtvt);
+        txttt =  findViewById(R.id.txtthongtin);
+        txttdg =  findViewById(R.id.txtgio);
+        txtbui =  findViewById(R.id.txtpmtt);
+        txtkk =   findViewById(R.id.txtaqi);
+        img =  findViewById(R.id.imgtt);
+        imgtt =  findViewById(R.id.imgttt);
+        btn =  findViewById(R.id.btnl);
     }
     private void addEvent()
     {
@@ -84,11 +75,9 @@ public class tintuc extends AppCompatActivity {
                         String country = jsonObject.getString("country");
                         String Aqi = jsonObject3.getString("aqius");
                         String aqicn = jsonObject3.getString("aqicn");
-                        String mainus = jsonObject3.getString("mainus");
-                        String maincn = jsonObject3.getString("maincn");
-                        Double kk = Double.parseDouble(Aqi);
-                        Double pm = Double.parseDouble(aqicn);
-                        int kq2 = kk > 101 ? R.drawable.annoyeduser:R.drawable.userfuny;
+                        double kk = Double.parseDouble(Aqi);
+                        double pm = Double.parseDouble(aqicn);
+                        int kq2 = kk > 300 ? R.drawable.rattt: kk >=201 ? R.drawable.rattt:kk >= 101 ? R.drawable.rattoite :kk >= 51 ? R.drawable.boy:R.drawable.userfuny;
                         int kq3 = kk > 300 ? 0xffcc9900:kk >= 201 ? 0xfffe0000:kk >= 101 ? 0xffffbe00:kk >= 51 ? 0xffffff01:0xff01b0f1;
                         int kq4 = pm >= 350.5 ? 0xffa60331:pm >= 250.5 ? 0xffff0000:pm >= 150.5 ? 0xffcc9900:pm >=65.5 ? 0xfffe0000:pm >=40.5 ? 0xfffe0000:pm >= 15.5 ? 0xffffff01:0xff01b0f1;
                         String a = kk > 300 ? "Harmful Everyone should stay indoors"
@@ -97,7 +86,26 @@ public class tintuc extends AppCompatActivity {
                                 :kk >= 51 ? "Sensitive groups should limit time spent outdoors"
                                 :"Good Does not affect health";
                         String b= pm >= 350.5 ? "Very dangerous":pm >= 250.5 ? "Danger":pm >= 150.5 ? "Very bad impact on health":pm >=65.5 ? "Bad effects on health":pm >=40.5 ? "Affect sensitive groups":pm >= 15.5 ? "Medium":"Good";
-                        int kq = ic == "01d" ? R.drawable.dmot: ic == "01n" ? R.drawable.nmot:ic == "02d" ? R.drawable.dhai:ic == "02n" ? R.drawable.nhai:ic == "03d" ? R.drawable.dba:ic == "04d" ? R.drawable.dbon:ic == "09d" ? R.drawable.dchin:ic == "10d" ? R.drawable.dmuoi:ic == "10n" ?R.drawable.nmuoi:R.drawable.dmuoimot;
+                        ic = ic.trim();
+                        int kq = ic.equals("01d") ? R.drawable.dmot
+                                : ic.equals("01n") ? R.drawable.nmot
+                                :ic.equals("02d") ? R.drawable.dhai
+                                :ic.equals("02n") ? R.drawable.nhai
+                                :ic.equals("03d") ? R.drawable.dba
+                                :ic.equals("03n") ? R.drawable.ban
+                                :ic.equals("04d") ? R.drawable.dbon
+                                :ic.equals("04n") ? R.drawable.bonnn
+                                :ic.equals("09d") ? R.drawable.dchin
+                                :ic.equals("09n") ? R.drawable.chinn
+                                :ic.equals("10d")? R.drawable.dmuoi
+                                :ic.equals("10n") ? R.drawable.nmuoi
+                                :ic.equals("11n") ? R.drawable.muoimotn
+                                :ic.equals("11d") ? R.drawable.muoimotd
+                                :ic.equals("13n") ? R.drawable.muoiban
+                                :ic.equals("13d") ? R.drawable.muoibad
+                                :ic.equals("50n") ? R.drawable.nammuoinpng
+                                :R.drawable.nammuoid;
+
                         txtda.setText("Humidity :" + Humidity + "%");
                         txtda.setBackgroundColor(0xff333333);
                         txtda.setTextColor(0xffffff01);

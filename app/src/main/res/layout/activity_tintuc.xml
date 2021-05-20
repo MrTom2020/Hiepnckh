@@ -37,8 +37,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="19dp"
             android:layout_marginTop="29dp"
-            android:layout_toEndOf="@+id/imgttt"
-            android:text="TextView" />
+            android:layout_toEndOf="@+id/imgttt" />
 
         <TextView
             android:id="@+id/txtvt"
@@ -47,8 +46,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="5dp"
             android:layout_marginTop="24dp"
-            android:layout_toEndOf="@+id/txtaqi"
-            android:text="TextView" />
+            android:layout_toEndOf="@+id/txtaqi" />
 
         <TextView
             android:id="@+id/txtpmtt"
@@ -57,8 +55,7 @@
             android:layout_below="@+id/txtaqi"
             android:layout_marginStart="19dp"
             android:layout_marginTop="13dp"
-            android:layout_toEndOf="@+id/imgttt"
-            android:text="TextView" />
+            android:layout_toEndOf="@+id/imgttt" />
 
         <TextView
             android:id="@+id/txtndtt"
@@ -67,8 +64,7 @@
             android:layout_below="@+id/imgtt"
             android:layout_marginStart="11dp"
             android:layout_marginTop="-54dp"
-            android:layout_toEndOf="@+id/imgtt"
-            android:text="TextView" />
+            android:layout_toEndOf="@+id/imgtt" />
 
         <TextView
             android:id="@+id/txtdamtt"
@@ -77,8 +73,7 @@
             android:layout_below="@+id/txtpmtt"
             android:layout_marginStart="7dp"
             android:layout_marginTop="71dp"
-            android:layout_toEndOf="@+id/imgtt"
-            android:text="TextView" />
+            android:layout_toEndOf="@+id/imgtt"/>
 
         <TextView
             android:id="@+id/txtgio"
@@ -87,8 +82,7 @@
             android:layout_below="@+id/txtpmtt"
             android:layout_marginStart="15dp"
             android:layout_marginTop="70dp"
-            android:layout_toEndOf="@+id/txtdamtt"
-            android:text="TextView" />
+            android:layout_toEndOf="@+id/txtdamtt"/>
 
         <TextView
             android:id="@+id/txtthongtin"
@@ -98,7 +92,6 @@
             android:layout_alignParentStart="true"
             android:layout_marginStart="10dp"
             android:layout_marginTop="44dp"
-            android:text="TextView"
             android:textColor="#fff000"
             android:background="#333333"/>
 
@@ -110,7 +103,8 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="11dp"
             android:layout_marginTop="26dp"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:srcCompat="@tools:sample/avatars"
+            android:background="@color/black"/>
 
         <Button
             android:id="@+id/btnl"

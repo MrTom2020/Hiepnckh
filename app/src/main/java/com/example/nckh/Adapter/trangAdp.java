@@ -67,79 +67,46 @@ public class trangAdp extends BaseAdapter
         vh.txtngay.setText(tt.getDate());
         vh.txtclkk.setText(tt.getMq135());
         vh.txtdam.setText(tt.getDoam() + "%");
-        double d = vh.txtclkk.getText().toString() == "" ? Double.parseDouble(vh.txtclkk.getText().toString()):0;
-        double bui = vh.txtmdbui.getText().toString() == "" ? Double.parseDouble(vh.txtmdbui.getText().toString()):0;
-        if(d > -1 && d < 51)
-        {
-            vh.txtclkk.setBackgroundColor(0xff01b0f1);
-            vh.imageView.setBackgroundResource(R.drawable.userfuny);
-            vh.txttt.setText("Air quality : " + "Does not affect health");
-        }
-        if(d > 50 && d < 101)
-        {
-            vh.txtclkk.setBackgroundColor(0xffffff01);
-            vh.txttt.setText("Air quality : " + "Sensitive groups should limit their time outside");
-        }
-        if(d >=100 && d < 201)
-        {
-            vh.txtclkk.setBackgroundColor(0xffffbe00);
-            vh.imageView.setBackgroundResource(R.drawable.userfuny);
-            vh.txttt.setText("Air quality : " + "Sensitive groups should limit their time outside");
-        }
-        if(d > 200 && d < 301)
-        {
-            vh.txtclkk.setBackgroundColor(0xfffe0000);
-            vh.imageView.setBackgroundResource(R.drawable.userfuny);
-            vh.txttt.setText("Air quality : " + "Sensitive groups should limit their time outside");
-        }
-        if(d > 301)
-        {
-            vh.txtclkk.setBackgroundColor(0xffcc9900);
-            vh.imageView.setBackgroundResource(R.drawable.userfuny);
-            vh.txttt.setText("Air quality : " + "Everyone should stay indoors");
-        }
-        if(bui > -1 && bui < 15.5)
-        {
-            vh.txtmdbui.setBackgroundColor(0xff01b0f1);
-            vh.imageView.setBackgroundResource(R.drawable.userfuny);
-            vh.txttt.append("Dust density : " +"Good");
-        }
-        if (bui> 15.4 && bui <40.5)
-        {
-            vh.txtmdbui.setBackgroundColor (0xffffff01);
-            vh.imageView.setBackgroundResource (R.drawable.userfuny);
-            vh.txttt.append ("Dust density:" + "Average");
-        }
-        if (bui> 40.4 && bui <65.5)
-        {
-            vh.txtmdbui.setBackgroundColor (0xffffbe00);
-            vh.imageView.setBackgroundResource (R.drawable.annoyeduser);
-            vh.txttt.append ("Dust density:" + "Affect sensitive group");
-        }
-        if (bui> 65.4 && bui <150.5)
-        {
-            vh.txtmdbui.setBackgroundColor (0xfffe0000);
-            vh.imageView.setBackgroundResource (R.drawable.annoyeduser);
-            vh.txttt.append ("Dust density:" + "Adverse to health");
-        }
-        if (bui> 150.4 && bui <250.5)
-        {
-            vh.txtmdbui.setBackgroundColor (0xffcc9900);
-            vh.imageView.setBackgroundResource (R.drawable.rattoite);
-            vh.txttt.append ("Dust density:" + "Very bad impact on health");
-        }
-        if (bui> 250.4 && bui <350.5)
-        {
-            vh.txtmdbui.setBackgroundColor (0xffff0000);
-            vh.imageView.setBackgroundResource (R.drawable.rattoite);
-            vh.txttt.append ("Dust density:" + "Danger");
-        }
-        if (bui> 350.4 && bui <500.5)
-        {
-            vh.txtmdbui.setBackgroundColor (0xffa60331);
-            vh.imageView.setBackgroundResource (R.drawable.rattoite);
-            vh.txttt.append ("Dust density:" + "Very dangerous");
-        }
+        double d = vh.txtclkk.getText().toString() != "" ? Double.parseDouble(vh.txtclkk.getText().toString()):0;
+        double bui = vh.txtmdbui.getText().toString() != "" ? Double.parseDouble(vh.txtmdbui.getText().toString()):0;
+        String kqttkk =  d > 300 ? "Air quality : " + "Does not affect health \n"
+                :d >= 201 ? "Air quality : " + "Sensitive groups should limit their time outside \n"
+                :d >= 101 ? "Air quality : " + "Sensitive groups should limit their time outside \n"
+                :d >= 51 ? "Air quality : " + "Sensitive groups should limit their time outside \n"
+                :"Air quality : " + "Does not affect health";
+        String kqttbui = bui >= 350.5 ? "Dust density:" + "Very dangerous \n"
+                :bui >= 250.5 ? "Dust density:" + "Danger \n"
+                :bui >= 150.5 ? "Dust density:" + "Very bad impact on health \n"
+                :bui >= 65.5 ? "Dust density:" + "Adverse to health \n"
+                :bui >= 40.5 ? "Dust density:" + "Affect sensitive group \n"
+                :bui >= 15.5 ? "Dust density:" + "Average"
+                :"Dust density : " +"Good \n";
+
+        int kqhinh = (d > 300) || (bui >= 350.5) ? R.drawable.rattt
+                : (d >= 201) || (bui >= 250.5) ? R.drawable.rattt
+                : (d >= 101) || (bui >= 150.5) ? R.drawable.rattoite
+                : (d >= 51) || (bui >= 65.5) ? R.drawable.boy
+                : (bui >= 40.5) ? R.drawable.boy
+                : (bui >= 15.5) ? R.drawable.boy
+                :R.drawable.userfuny;
+
+        int kqmaukk = (d > 300)  ? 0xffcc9900
+                : (d >= 201) ? 0xfffe0000
+                : (d >= 101)  ? 0xffffbe00
+                : (d >= 51)  ? 0xffffff01
+                :0xff01b0f1;
+        int kqmaubui = (bui >= 350.5) ? 0xffa60331
+                : (bui >= 250.5) ? 0xffff0000
+                : (bui >= 150.5) ? 0xffcc9900
+                : (bui >= 65.5) ? 0xfffe0000
+                : (bui >= 40.5) ? 0xffffbe00
+                : (bui >= 15.5) ? 0xffffff01
+                :0xff01b0f1;
+        vh.txttt.setText(kqttkk);
+        vh.txtclkk.setBackgroundColor(kqmaukk);
+        vh.txttt.append(kqttbui);
+        vh.txtmdbui.setBackgroundColor (kqmaubui);
+        vh.imageView.setBackgroundResource(kqhinh);
         return convertView;
     }
 

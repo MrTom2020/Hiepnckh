@@ -127,7 +127,7 @@
             android:layout_toEndOf="@+id/textView12"
             android:background="@drawable/tuybiennut"
             android:ems="10"
-            android:inputType="number" />
+            android:inputType="datetime"/>
 
         <Button
             android:id="@+id/btndycn"

@@ -11,7 +11,19 @@ import static org.junit.Assert.*;
  */
 public class ExampleUnitTest {
     @Test
-    public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
+    public void addition_isCorrect()  throws Exception
+    {
+        MyClass myClass = new MyClass();
+        int result = myClass.add(-200,7);
+        int kq = 5;
+        assertEquals(kq, result);
+    }
+
+}
+class MyClass
+{
+    public int add(int a,int b)
+    {
+        return a + b;
     }
 }

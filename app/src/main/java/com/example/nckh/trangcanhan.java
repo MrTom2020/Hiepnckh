@@ -1,9 +1,5 @@
 package com.example.nckh;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,8 +10,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.nckh.SQL.dulieusqllite;
 import com.example.nckh.model.thongtinnguoidung;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,23 +27,27 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class trangcanhan extends AppCompatActivity
 {
     private EditText edtten,edtmk,edtdc,edtns;
     private Button btndy,btnluu;
-    private Intent intent;
-    private Bundle bundle;
-    private Cursor cursor;
+    public Intent intent;
+    public Cursor cursor;
     private dulieusqllite dl;
     private  int kk = 0;
-    private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference databaseReference;
+    public FirebaseDatabase firebaseDatabase;
+    public DatabaseReference databaseReference;
+    public FirebaseAuth firebaseAuth =   FirebaseAuth.getInstance();
+    public FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
     private ArrayList<thongtinnguoidung> arrayList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trangcanhan);
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("dangnhap");
         dangkynut();
         dangkysukien();
         taodt();
@@ -92,17 +100,17 @@ public class trangcanhan extends AppCompatActivity
     {
         try {
 
-            String ssa = MainActivity.tend.toString();
+            String ssa = MainActivity.tend;
             arrayList = new ArrayList<>();
             dl = new dulieusqllite(trangcanhan.this, "dulieunguoidung.sqlite", null, 1);
             dl.truyvankhongtrakq("CREATE TABLE IF NOT EXISTS nguoidung(ID VARCHAR(50) PRIMARY KEY,ten VARCHAR(50),matkhau VARCHAR(100),ngaysinh VARCHAR(20),diachi VARCHAR(200))");
             cursor = dl.truyvancoketqua("SELECT * FROM nguoidung WHERE ID='" + ssa + "'");
             if (cursor != null) {
                 while (cursor.moveToNext()) {
-                    String ten = cursor.getString(1).toString();
-                    String mk = cursor.getString(2).toString();
-                    String ngaysinh = cursor.getString(3).toString();
-                    String diachi = cursor.getString(4).toString();
+                    String ten = cursor.getString(1);
+                    String mk = cursor.getString(2);
+                    String ngaysinh = cursor.getString(3);
+                    String diachi = cursor.getString(4);
                     arrayList.add(new thongtinnguoidung(ten, mk, ngaysinh, diachi));
                     kk = 4;
                 }
@@ -123,10 +131,10 @@ public class trangcanhan extends AppCompatActivity
         try {
 
             for (int i = 0; i < arrayList.size(); ++i) {
-                edtten.setText(arrayList.get(i).getHoten().toString());
-                edtmk.setText(arrayList.get(i).getMatkhau().toString());
-                edtns.setText(arrayList.get(i).getNgaysinh().toString());
-                edtdc.setText(arrayList.get(i).getDiachi().toString());
+                edtten.setText(arrayList.get(i).getHoten());
+                edtmk.setText(arrayList.get(i).getMatkhau());
+                edtns.setText(arrayList.get(i).getNgaysinh());
+                edtdc.setText(arrayList.get(i).getDiachi());
             }
         }
         catch (Exception e)
@@ -142,13 +150,11 @@ public class trangcanhan extends AppCompatActivity
         try {
 
             arrayList = new ArrayList<>();
-            String id = MainActivity.tend.toString();
-            firebaseDatabase = FirebaseDatabase.getInstance();
-            databaseReference = firebaseDatabase.getReference("dangnhap");
+            String id = MainActivity.tend;
             databaseReference.child(id).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    String Ma = snapshot.getKey().toString();
+                    String Ma = snapshot.getKey();
                     String Ten = snapshot.child("Tên").getValue().toString();
                     String Mk = snapshot.child("Mật khẩu").getValue().toString();
                     String diachi = snapshot.child("Địa chỉ").getValue().toString();
@@ -160,10 +166,10 @@ public class trangcanhan extends AppCompatActivity
 
                     arrayList.add(new thongtinnguoidung(Ten, Mk, ngaysinh, diachi));
                     for (int i = 0; i < arrayList.size(); ++i) {
-                        edtten.setText(arrayList.get(i).getHoten().toString());
-                        edtmk.setText(arrayList.get(i).getMatkhau().toString());
-                        edtns.setText(arrayList.get(i).getNgaysinh().toString());
-                        edtdc.setText(arrayList.get(i).getDiachi().toString());
+                        edtten.setText(arrayList.get(i).getHoten());
+                        edtmk.setText(arrayList.get(i).getMatkhau());
+                        edtns.setText(arrayList.get(i).getNgaysinh());
+                        edtdc.setText(arrayList.get(i).getDiachi());
                     }
 
                 }
@@ -183,7 +189,33 @@ public class trangcanhan extends AppCompatActivity
         }
 
     }
+    private void capnhatdl()
+    {
+        dl = new dulieusqllite(trangcanhan.this, "dulieunguoidung.sqlite", null, 1);
+        firebaseUser = firebaseAuth.getCurrentUser();
+         String ten =  edtten.getText().toString();
+        String mk  = edtmk.getText().toString();
+         String ns = edtns.getText().toString();
+        String dc = edtdc.getText().toString();
+        HashMap<String,Object> result = new HashMap<>();
+        result.put("Ngày sinh",ns);
+        result.put("Mật khẩu",mk);
+        result.put("Tên",ten);
+        result.put("Địa chỉ",dc);
+        databaseReference.child(MainActivity.tend).updateChildren(result);
+        firebaseUser.updatePassword(mk).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                    if(task.isSuccessful())
+                    {
+                        Toast.makeText(trangcanhan.this,"Đổi mật khẩu thành công",Toast.LENGTH_SHORT).show();
+                        dl.truyvankhongtrakq("UPDATE nguoidung SET ten='"+ten+"',matkhau = '"+mk+"',ngaysinh = '"+ns+"',diachi = '"+dc+"' WHERE ID = '"+MainActivity.tend+"'");
+                    }
+            }
+        });
+        Toast.makeText(trangcanhan.this,ns,Toast.LENGTH_SHORT).show();
 
+    }
     private class sukiencuatoi implements View.OnClickListener
     {
         @Override
@@ -195,7 +227,7 @@ public class trangcanhan extends AppCompatActivity
             }
             if(view.equals(btnluu))
             {
-
+                capnhatdl();
             }
         }
     }

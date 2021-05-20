@@ -6,7 +6,7 @@
 
     <TextView
         android:id="@+id/txttgioluu"
-        android:layout_width="wrap_content"
+        android:layout_width="77dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtthoigian"
         android:layout_alignParentEnd="true"
@@ -16,7 +16,7 @@
 
     <TextView
         android:id="@+id/txtthoigian"
-        android:layout_width="wrap_content"
+        android:layout_width="77dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
@@ -79,14 +79,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView18"
-        android:layout_marginTop="21dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="22dp"
         android:layout_toStartOf="@+id/txtmdbui"
         android:text="Pm 2.5:" />
 
     <TextView
         android:id="@+id/txtmdbui"
-        android:layout_width="wrap_content"
+        android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txttgioluu"
         android:layout_alignParentEnd="true"
@@ -96,7 +96,7 @@
 
     <TextView
         android:id="@+id/txtnhietdo"
-        android:layout_width="wrap_content"
+        android:layout_width="81dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginStart="9dp"
@@ -106,7 +106,7 @@
 
     <TextView
         android:id="@+id/txtdam"
-        android:layout_width="wrap_content"
+        android:layout_width="84dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtnhietdo"
         android:layout_marginStart="20dp"
@@ -116,7 +116,7 @@
 
     <TextView
         android:id="@+id/txtclkk"
-        android:layout_width="wrap_content"
+        android:layout_width="78dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtdam"
         android:layout_marginStart="22dp"

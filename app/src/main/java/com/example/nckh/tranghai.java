@@ -25,15 +25,11 @@ public class tranghai extends TabActivity {
     {
         tabHost = (TabHost)findViewById(android.R.id.tabhost);
     }
-    private void dangkysk()
-    {
-
-    }
     private void check()
     {
         boolean ret = ConnectionReceiver.isConnected();
         String ms;
-        if(ret == true)
+        if(ret)
         {
             ms = "The device has an Internet connection and can be done online";
         }
@@ -66,11 +62,7 @@ public class tranghai extends TabActivity {
         tabHost.addTab (tabSpec);
 
 
-        tabSpec = tabHost.newTabSpec ("Ranking");
-        tabSpec.setIndicator ("Rank");
-        intent = new Intent (this, BangXepHang.class);
-        tabSpec.setContent (intent);
-        tabHost.addTab (tabSpec);
+
 
        tabHost.setCurrentTab(1);
 

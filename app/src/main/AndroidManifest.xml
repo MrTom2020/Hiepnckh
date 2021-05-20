@@ -8,14 +8,13 @@
     <application
         android:name=".model.WifiApp"
         android:allowBackup="true"
-        android:icon="@drawable/drone"
+        android:icon="@drawable/iconm"
         android:label="@string/app_name"
         android:usesCleartextTraffic="true"
-        android:roundIcon="@drawable/drone"
+        android:roundIcon="@drawable/iconm"
         android:supportsRtl="true"
         android:theme="@style/Theme.NCKH">
         <activity android:name=".model.putnotification"></activity>
-        <activity android:name=".BangXepHang" />
         <activity android:name=".tintuc" />
         <activity
             android:name=".danhsachluu"
@@ -33,7 +32,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <service android:name=".Service.MyFirebaseService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
         <receiver
             android:name=".Service.ConnectionReceiver"
             android:enabled="true">

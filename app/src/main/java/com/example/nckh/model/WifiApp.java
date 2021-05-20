@@ -5,6 +5,8 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.os.Build;
 
+import com.example.nckh.R;
+
 public class    WifiApp extends Application
 {
     static WifiApp wifiApp;
@@ -27,6 +29,7 @@ public class    WifiApp extends Application
                     cb,"Thongbao",
                     NotificationManager.IMPORTANCE_HIGH
             );
+            notificationChannel.setLightColor(0xffffff);
             notificationChannel.setDescription("Thongbao");
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(notificationChannel);

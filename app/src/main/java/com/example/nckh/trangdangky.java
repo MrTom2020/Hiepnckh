@@ -1,19 +1,18 @@
 package com.example.nckh;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -26,11 +25,10 @@ public class    trangdangky extends AppCompatActivity {
 
     private EditText edtten,edtmk,edtdc,edtns;
     private Button btnthoat,btndy;
-    private Intent intent;
     private DatabaseReference databaseReference;
-    private FirebaseAuth firebaseAuth;
-    private FirebaseDatabase firebaseDatabase;
-    private ProgressDialog progressDialog;
+    public FirebaseAuth firebaseAuth;
+    public FirebaseDatabase firebaseDatabase;
+    public ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -153,12 +151,12 @@ public class    trangdangky extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task)
             {
                 if(task.isSuccessful()) {
-                    String k = firebaseAuth.getCurrentUser().getUid().toString();
-                    DatabaseReference databaseReference2 = databaseReference.child(k+"/k");
-                    databaseReference2.child("Name").setValue(taikhoan);
-                    databaseReference2.child("Password").setValue(mk);
-                    databaseReference2.child("Address").setValue(edtdc.getText ().toString());
-                    databaseReference2.child("Date of Birth").setValue(edtns.getText().toString());
+                    String k = firebaseAuth.getCurrentUser().getUid();
+                    DatabaseReference databaseReference2 = databaseReference.child(k);
+                    databaseReference2.child("Tên").setValue(taikhoan);
+                    databaseReference2.child("Mật khẩu").setValue(mk);
+                    databaseReference2.child("Địa chỉ").setValue(edtdc.getText ().toString());
+                    databaseReference2.child("Ngày sinh").setValue(edtns.getText().toString());
                     progressDialog.dismiss ();
                     finish();
                 }
